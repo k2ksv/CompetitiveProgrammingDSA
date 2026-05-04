@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "run cpp (wsl)",
+      "type": "shell",
+      "command": "g++ -std=c++17 -O2 \"${file}\" -o \"${fileBasenameNoExtension}\" && ./${fileBasenameNoExtension}",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
