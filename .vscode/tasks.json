@@ -4,7 +4,7 @@
     {
       "label": "run cpp (wsl)",
       "type": "shell",
-      "command": "g++ -std=c++17 -O2 \"${file}\" -o \"${fileBasenameNoExtension}\" && ./${fileBasenameNoExtension}",
+      "command": "g++ -std=c++17 -O2 \"${file}\" -o a && ./a",
       "group": {
         "kind": "build",
         "isDefault": true
