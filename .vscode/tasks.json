@@ -4,11 +4,18 @@
     {
       "label": "run cpp (wsl)",
       "type": "shell",
-      "command": "g++ -std=c++17 -O2 \"${file}\" -o a && ./a",
+      "command": "clear && g++ -std=c++17 -O2 \"${file}\" -o a && ./a",
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "presentation": {
+        "clear": true,
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false
+      },
+      "problemMatcher": []
     }
   ]
 }
