@@ -9,17 +9,23 @@ const int INF = 1e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-        int a, b, c;
-    cin >> a >> b >> c;
- 
-    if (a < b && b < c) {
-        cout << "STAIR\n";
+    string s;
+    cin >> s;
+    int count1 = 0;
+    int count2 = 0;
+
+    for(int i = 0; i < s.size(); i++){
+        if(s[i] == 'A'){
+            count1++;
+        }else{
+            count2++;
+        }
     }
-    else if (a < b && b > c) {
-        cout << "PEAK\n";
-    }
-    else {
-        cout << "NONE\n";
+    if(count1 > count2){
+        cout << "A" << '\n';
+
+    }else{
+        cout << "B" << '\n';
     }
 }
 
