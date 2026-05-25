@@ -9,12 +9,10 @@ const ll INF = 1e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n; int k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    long long sm = (k - 1) / (n - 1);
-    cout << k + sm << "\n";
-
+    
 }
 
 int main() {
@@ -23,7 +21,6 @@ int main() {
 
     int t;
     cin >> t;
-    int
 
     #ifdef LOCAL
     auto begin = std::chrono::high_resolution_clock::now();

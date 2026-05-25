@@ -9,12 +9,21 @@ const ll INF = 1e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n; int k;
-    cin >> n >> k;
-
-    long long sm = (k - 1) / (n - 1);
-    cout << k + sm << "\n";
-
+    int n;
+    cin >> n;
+    
+    if (n >= 1900) {
+        cout << "Division 1\n";
+    } 
+    else if (n >= 1600) {
+        cout << "Division 2\n";
+    } 
+    else if (n >= 1400) {
+        cout << "Division 3\n";
+    } 
+    else {
+        cout << "Division 4\n";
+    }
 }
 
 int main() {
@@ -23,7 +32,6 @@ int main() {
 
     int t;
     cin >> t;
-    int
 
     #ifdef LOCAL
     auto begin = std::chrono::high_resolution_clock::now();
