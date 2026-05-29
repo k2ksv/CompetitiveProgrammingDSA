@@ -1,44 +1,63 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fast ios::sync_with_stdio(false); cin.tie(NULL);
+using ll = long long;
 
-void solve() {
-    int n, q;
-    cin >> n >> q;
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-    vector<long long> a(n), b(n);
-
-    for (int i = 0; i < n; i++) cin >> a[i];
-    for (int i = 0; i < n; i++) cin >> b[i];
-
- 
-    for (int i = n - 2; i >= 0; i--) {
-        a[i] = max({a[i], b[i], a[i + 1]});
+const ll INF = 1e18;
+const int MOD = 1e9 + 7;
+    
+void Solve() {
+    int n, q; cin >> n >> q;
+    
+    vector <int> a(n), b(n), c(n);
+    for (auto &x : a) cin >> x;
+    for (auto &x : b) cin >> x;
+    c = a;
+    
+    for (int i = n - 1; i >= 0; i--){
+        c[i] = max(c[i], b[i]);
+        if (i < n - 1){
+            c[i] = max(c[i], c[i + 1]);
+        }
     }
-
-  
-    vector<long long> pref(n + 1, 0);
-    for (int i = 0; i < n; i++) {
-        pref[i + 1] = pref[i] + a[i];
+                 
+    vector <int> ps(n + 1);
+    for (int i = 1; i <= n; i++){
+        ps[i] = ps[i - 1] + c[i - 1];
     }
-
- 
-    while (q--) {
-        int l, r;
-        cin >> l >> r;
-        cout << pref[r] - pref[l - 1] << " ";
+    
+    while (q--){
+        int l, r; cin >> l >> r;
+        
+        cout << (ps[r] - ps[l - 1]) << " \n"[q == 0];
     }
-
-    cout << '\n';
 }
 
 int main() {
-    fast;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int t;
     cin >> t;
+
+    #ifdef LOCAL
+    auto begin = std::chrono::high_resolution_clock::now();
+    #endif
+
     while (t--) {
-        solve();
+        Solve();
     }
+
+    #ifdef LOCAL
+    auto end = std::chrono::high_resolution_clock::now();
+
+    auto elapsed =
+        std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+
+    cerr << "Time: " << elapsed.count() << " ms\n";
+    #endif
+
     return 0;
 }

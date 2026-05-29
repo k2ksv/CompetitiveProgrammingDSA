@@ -9,37 +9,9 @@ const ll INF = 1e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n; int k;
-    cin >> n >> k;
-
-    if (k%2==0 && n%2==1){
-        cout<<"NO\n";return;
-    }
-    if (k%2 != n%2){
-        if (n < 2* k)
-        cout<<"NOn";
-        else {
-            cout<<"YES\n";
-            for (int i=1; i<k; i++){
-            cout<<2<<" ";
-            n-=2;
-            }
-            cout<<n<<"\n";
-        }
-    }
-    else {
-        if (n<k)
-        cout<<"NO\n";
-        else {
-            cout<<"YES\n";
-            for (int i=1; i<k; i++){
-                cout<<1<<" ";
-                n--;
-            }
-            
-            cout<<n<<"\n";
-        }
-    }
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    cout << (b > a) + (c > a) + (d > a) << "\n";   
 }
 
 int main() {
