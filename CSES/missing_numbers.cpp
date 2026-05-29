@@ -23,6 +23,6 @@ int main() {
     cin.tie(NULL);
 
     Solve();
-
+    
     return 0;
 }

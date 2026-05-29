@@ -1,0 +1,17 @@
+{
+  // Disables the pop-up suggestion box as you type
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  
+  // Stops suggestions from appearing when you type a dot (.) or arrow (->)
+  "editor.suggestOnTriggerCharacters": false,
+  
+  // Disables VS Code from guessing words based on other words in your file
+  "editor.wordBasedSuggestions": "off",
+  
+  // (Optional) If you use GitHub Copilot or other AI tools, this turns off the ghost text
+  "editor.inlineSuggest.enabled": false
+}
