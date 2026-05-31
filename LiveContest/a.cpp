@@ -11,21 +11,26 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
-    
-    int min_a = 1005; 
-    int max_a = -1;  
-    
+    vector<int> a(n);
     for (int i = 0; i < n; i++) {
-        int a;
-        cin >> a;
-        min_a = min(min_a, a);
-        max_a = max(max_a, a);
+        cin >> a[i];
     }
-    
-    int min_ops = (max_a - min_a + 1) / 2;
-    
-    cout << min_ops << "\n";
-    
+    int min_calls = 1e9; 
+    for (int i = 0; i < n; i++) {
+        int target_X = a[i];
+        int L = 0; 
+        int R = 0; 
+        for (int j = 0; j < n; j++) {
+            if (a[j] < target_X) {
+                L++;
+            } else if (a[j] > target_X) {
+                R++;
+            }
+        }
+        int current_calls = max(L, R);
+        min_calls = min(min_calls, current_calls);
+    }
+    cout << min_calls << "\n";
 }
 
 int main() {

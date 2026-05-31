@@ -11,19 +11,16 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
-    ll current_sum = 0;
-    ll INF = 2e18; 
-    
-    for (int i = 1; i <= n; i++) {
-        ll a;
-        cin >> a;
-        current_sum += a;
-        ll step_h = current_sum / i; 
-        INF = min(INF, step_h);
-        cout << INF << (i == n ? "" : " ");
+    vector<long long> a(n), b(n);
+    for (int i = 0; i< n;i++) cin >> a[i];
+    for (int i = 0; i < n; i++) cin>> b[i];
+    long long sum_b = 0;
+    long long max_a = 0;
+    for (int i = 0; i< n; i++) {
+        sum_b += max(a[i], b[i]);
+        max_a = max(max_a, min(a[i], b[i]));
     }
-    cout << "\n";
-    
+    cout << sum_b+ max_a << "\n";
 }
 
 int main() {

@@ -11,18 +11,20 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
-    ll current_sum = 0;
-    ll INF = 2e18; 
     
-    for (int i = 1; i <= n; i++) {
-        ll a;
+    int min_a = 1005; 
+    int max_a = -1;  
+    
+    for (int i = 0; i < n; i++) {
+        int a;
         cin >> a;
-        current_sum += a;
-        ll step_h = current_sum / i; 
-        INF = min(INF, step_h);
-        cout << INF << (i == n ? "" : " ");
+        min_a = min(min_a, a);
+        max_a = max(max_a, a);
     }
-    cout << "\n";
+    
+    int min_ops = (max_a - min_a + 1) / 2;
+    
+    cout << min_ops << "\n";
     
 }
 

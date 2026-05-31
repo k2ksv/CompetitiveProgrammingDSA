@@ -14,16 +14,17 @@ void Solve() {
     
     string s;
     cin >> s;
-
+    
     sort(s.begin(), s.end());
     if(s == "Timru"){
         cout << "Yes\n";
+        
 
     }
     else{
         cout << "No\n";
     }    
-    
+
 }
 
 int main() {
