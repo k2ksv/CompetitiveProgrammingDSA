@@ -13,5 +13,17 @@
   "editor.wordBasedSuggestions": "off",
   
   // (Optional) If you use GitHub Copilot or other AI tools, this turns off the ghost text
-  "editor.inlineSuggest.enabled": false
+  "editor.inlineSuggest.enabled": false,
+  
+  "scm.diffDecorations": "none",
+  "git.decorations.enabled": false,
+
+  // --- NEW SIZING SETTINGS ---
+
+  // Changes the font size specifically inside the terminal
+
+
+  
+  
+
 }

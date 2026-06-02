@@ -2,20 +2,41 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "run cpp (wsl)",
+      "label": "Run (Terminal)",
       "type": "shell",
-      "command": "clear && g++ -DLOCAL -std=c++23 -O2 \"${file}\" -o a && ./a",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
+      "command": "clear && g++ -DLOCAL -std=c++23 -O2 -Wall -Wextra \"${file}\" -o a && ./a",
+      "group": "build",
       "presentation": {
         "clear": true,
         "reveal": "always",
         "panel": "shared",
+        "showReuseMessage": false,
+        "focus": true
+      }
+    },
+    {
+      "label": "Run (File I/O)",
+      "type": "shell",
+      "command": "clear && g++ -DLOCAL -DFILE_IO -std=c++23 -O2 -Wall -Wextra -Wno-unused-result \"${file}\" -o a && ./a",
+      "group": "build",
+      "presentation": {
+        "clear": true,
+        "reveal": "always", 
+        "panel": "shared",
         "showReuseMessage": false
-      },
-      "problemMatcher": []
+      }
+    },
+    {
+      "label": "Run & Check (Expected)",
+      "type": "shell",
+      "command": "clear && g++ -DLOCAL -DFILE_IO -std=c++23 -O2 -Wall -Wextra -Wno-unused-result \"${file}\" -o a && ./a && echo -e '\\n--- CHECKER RESULT ---' && diff -w --color output.txt expected.txt && echo '✅ ALL MATCH (Accepted)' || echo '❌ MISMATCH FOUND (See differences above)'",
+      "group": "build",
+      "presentation": {
+        "clear": true,
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true
+      }
     }
   ]
 }
