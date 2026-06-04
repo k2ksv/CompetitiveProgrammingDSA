@@ -3,6 +3,13 @@
 *.o
 *.class
 a
+
 gen
 test
 brute
+
+test.out
+test.in
+
+brute.out
+
