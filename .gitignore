@@ -3,3 +3,6 @@
 *.o
 *.class
 a
+gen
+test
+brute
