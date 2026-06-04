@@ -1,10 +1,49 @@
 {
   "version": "2.0.0",
   "tasks": [
+
+    // ── 1. Ctrl+Shift+B — interactive terminal run ────────────────────────
+    // -DONLINE_JUDGE disables freopen so you type input directly
+    // -DLOCAL enables timing block in template
     {
       "label": "Run (Terminal)",
       "type": "shell",
-      "command": "clear && g++ -DLOCAL -std=c++23 -O2 -Wall -Wextra \"${file}\" -o a && ./a",
+      "command": "g++ -std=c++23 -O2 -Wall -Wextra -Wshadow -DONLINE_JUDGE -DLOCAL \"${file}\" -o /tmp/${fileBasenameNoExtension} && /tmp/${fileBasenameNoExtension}",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "clear": true,
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "focus": false
+      }
+    },
+
+    // ── 2. F9 — read from input.txt, write to output.txt ─────────────────
+    // NO -DONLINE_JUDGE so freopen stays active
+    {
+      "label": "Run (File I/O)",
+      "type": "shell",
+      "command": "touch input.txt output.txt && g++ -std=c++23 -O2 -Wall -Wextra -Wshadow -Wno-unused-result -DLOCAL \"${file}\" -o /tmp/${fileBasenameNoExtension} && /tmp/${fileBasenameNoExtension}",
+      "group": "build",
+      "presentation": {
+        "clear": true,
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "focus": false
+      }
+    },
+
+    // ── 3. F10 — run + diff output vs expected ────────────────────────────
+    // printf fixes \n rendering in zsh (echo -e is unreliable)
+    {
+      "label": "Run & Check (Expected)",
+      "type": "shell",
+      "command": "touch input.txt output.txt expected.txt && g++ -std=c++23 -O2 -Wall -Wextra -Wshadow -Wno-unused-result -DLOCAL \"${file}\" -o /tmp/${fileBasenameNoExtension} && /tmp/${fileBasenameNoExtension} && printf '\\n--- CHECKER RESULT ---\\n' && (diff -w --color=always output.txt expected.txt && printf 'AC: ALL MATCH\\n' || printf 'WA: MISMATCH FOUND\\n')",
       "group": "build",
       "presentation": {
         "clear": true,
@@ -13,30 +52,7 @@
         "showReuseMessage": false,
         "focus": true
       }
-    },
-    {
-      "label": "Run (File I/O)",
-      "type": "shell",
-      "command": "clear && g++ -DLOCAL -DFILE_IO -std=c++23 -O2 -Wall -Wextra -Wno-unused-result \"${file}\" -o a && ./a",
-      "group": "build",
-      "presentation": {
-        "clear": true,
-        "reveal": "always", 
-        "panel": "shared",
-        "showReuseMessage": false
-      }
-    },
-    {
-      "label": "Run & Check (Expected)",
-      "type": "shell",
-      "command": "clear && g++ -DLOCAL -DFILE_IO -std=c++23 -O2 -Wall -Wextra -Wno-unused-result \"${file}\" -o a && ./a && echo -e '\\n--- CHECKER RESULT ---' && diff -w --color output.txt expected.txt && echo '✅ ALL MATCH (Accepted)' || echo '❌ MISMATCH FOUND (See differences above)'",
-      "group": "build",
-      "presentation": {
-        "clear": true,
-        "reveal": "always",
-        "panel": "shared",
-        "focus": true
-      }
     }
+
   ]
 }
