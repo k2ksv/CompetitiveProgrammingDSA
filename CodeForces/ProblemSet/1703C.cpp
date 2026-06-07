@@ -21,39 +21,26 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
-    
-    vector<long long> h(n);
+    vector<int> a(n);
     for (int i = 0; i < n; i++) {
-        cin >> h[i];
+        cin >> a[i];
     }
-    vector<long long> ans(n);
-    for (int empty_idx = 0; empty_idx < n; empty_idx++) {
-        vector<long long> H(n);
-        for (int j = 0; j < n; j++) {
-            H[j] = h[(empty_idx + j) % n];
-        }
-        vector<long long> L(n, 0);
-        long long max_left = 0;
-        for (int i = 1; i < n; i++) {
-            max_left = max(max_left, H[i - 1]);
-            L[i] = max_left;
-        }
-        vector<long long> R(n, 0);
-        long long max_right = 0;
-        for (int i = n - 1; i >= 1; i--) {
-            max_right = max(max_right, H[i]);
-            R[i] = max_right;
-        }
-        long long total_volume = 0;
-        for (int i = 1; i < n; i++) {
-            total_volume += min(L[i], R[i]);
-        }
+    for (int i = 0; i < n; i++) {
+        int b;
+        string moves;
+        cin >> b >> moves; 
         
-        ans[empty_idx] = total_volume;
+        int current_digit = a[i];
+        for (char move : moves) {
+            if (move == 'U') {
+                current_digit = (current_digit - 1 + 10) % 10;
+            } else if (move == 'D') {
+                current_digit = (current_digit + 1) % 10;
+            }
+        }
+        cout << current_digit << " ";
     }
-    for (int i = 0; i < n; i++) {
-        cout << ans[i] << (i == n - 1 ? "" : " ");
-    }
+    
     cout << "\n";
 }
 

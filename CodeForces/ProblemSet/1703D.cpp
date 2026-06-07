@@ -21,38 +21,22 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
-    
-    vector<long long> h(n);
+
+    vector<string> a(n);
     for (int i = 0; i < n; i++) {
-        cin >> h[i];
+        cin >> a[i];
     }
-    vector<long long> ans(n);
-    for (int empty_idx = 0; empty_idx < n; empty_idx++) {
-        vector<long long> H(n);
-        for (int j = 0; j < n; j++) {
-            H[j] = h[(empty_idx + j) % n];
-        }
-        vector<long long> L(n, 0);
-        long long max_left = 0;
-        for (int i = 1; i < n; i++) {
-            max_left = max(max_left, H[i - 1]);
-            L[i] = max_left;
-        }
-        vector<long long> R(n, 0);
-        long long max_right = 0;
-        for (int i = n - 1; i >= 1; i--) {
-            max_right = max(max_right, H[i]);
-            R[i] = max_right;
-        }
-        long long total_volume = 0;
-        for (int i = 1; i < n; i++) {
-            total_volume += min(L[i], R[i]);
-        }
-        
-        ans[empty_idx] = total_volume;
-    }
+    set<string> s(a.begin(), a.end());
+
     for (int i = 0; i < n; i++) {
-        cout << ans[i] << (i == n - 1 ? "" : " ");
+        bool ok = false;
+        for (int j = 1; j < int(a[i].length()); j++) {
+            if (s.count(a[i].substr(0, j)) && s.count(a[i].substr(j))) {
+                ok = true;
+                break;
+            }
+        }
+        cout << ok;
     }
     cout << "\n";
 }

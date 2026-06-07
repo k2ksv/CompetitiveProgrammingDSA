@@ -21,40 +21,49 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
+    vector<int> deg(n + 1, 0);
+    for(int i = 0; i < n - 1; i++) {
+        int u, v;
+        cin >> u >> v;
+        deg[u]++;
+        deg[v]++;
+    }
     
-    vector<long long> h(n);
-    for (int i = 0; i < n; i++) {
-        cin >> h[i];
+    string s;
+    cin >> s;
+
+    int L0 = 0, L1 = 0, L_q = 0, I_q = 0;
+    bool is_root_unknown = (s[0] == '?');
+    for(int i = 2; i <= n; i++) {
+        if(deg[i] == 1) { 
+            // It's a leaf
+            if(s[i-1] == '0') L0++;
+            else if(s[i-1] == '1') L1++;
+            else L_q++;
+        } else { 
+            if(s[i-1] == '?') I_q++;
+        }
     }
-    vector<long long> ans(n);
-    for (int empty_idx = 0; empty_idx < n; empty_idx++) {
-        vector<long long> H(n);
-        for (int j = 0; j < n; j++) {
-            H[j] = h[(empty_idx + j) % n];
+    int ans = 0;
+    if (!is_root_unknown) {
+        if (s[0] == '0') {
+            ans = L1 + (L_q + 1) / 2;
+        } else {
+            ans = L0 + (L_q + 1) / 2;
         }
-        vector<long long> L(n, 0);
-        long long max_left = 0;
-        for (int i = 1; i < n; i++) {
-            max_left = max(max_left, H[i - 1]);
-            L[i] = max_left;
+    } else {
+        if (L0 == L1) {
+            if (I_q % 2 == 1) {
+                ans = L0 + (L_q + 1) / 2; 
+            } else {
+                ans = L0 + L_q / 2;     
+            }
+        } else {
+            ans = max(L0, L1) + L_q / 2;
         }
-        vector<long long> R(n, 0);
-        long long max_right = 0;
-        for (int i = n - 1; i >= 1; i--) {
-            max_right = max(max_right, H[i]);
-            R[i] = max_right;
-        }
-        long long total_volume = 0;
-        for (int i = 1; i < n; i++) {
-            total_volume += min(L[i], R[i]);
-        }
-        
-        ans[empty_idx] = total_volume;
     }
-    for (int i = 0; i < n; i++) {
-        cout << ans[i] << (i == n - 1 ? "" : " ");
-    }
-    cout << "\n";
+
+    cout << ans << "\n";
 }
 
 int main() {
