@@ -19,22 +19,12 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n;
-    cin >> n;
-    for (int i =1; i <= n; i++){
-        cout << i << " ";
-    }
-    for (int i=1; i <= n; i++){
-        cout << i << " ";
-    }
-    cout << n << " ";
-    for (int i= 1; i <= n-1; i++){
-        cout << i << " ";
-    }
-    for (int i = 1; i <= n; i++){
-        cout << i << (i == n ? "" : " ");
-    }
-    cout << "\n";
+    string s;
+    cin >> s;
+    s.pop_back();
+    s.pop_back();
+    s+='i';
+    cout << s << "\n";
 }
 
 int main() {

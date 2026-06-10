@@ -18,23 +18,39 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
+struct ArrayBlock {
+    ll sum;
+    int id;
+    bool operator<(const ArrayBlock& other) const {
+        return sum > other.sum;
+    }
+};
+
 void Solve() {
-    int n;
-    cin >> n;
-    for (int i =1; i <= n; i++){
-        cout << i << " ";
+    int n, m;
+    cin >> n >> m;
+    vector<vector<ll>> a(n, vector<ll>(m));
+    vector<ArrayBlock> blocks(n);
+    
+    for (int i = 0; i < n; i++) {
+        ll current_sum = 0;
+        for (int j = 0; j < m; j++) {
+            cin >> a[i][j];
+            current_sum += a[i][j];
+        }
+        blocks[i] = {current_sum, i};
     }
-    for (int i=1; i <= n; i++){
-        cout << i << " ";
+    sort(blocks.begin(), blocks.end());
+    ll total_score = 0;
+    ll current_prefix_sum = 0;
+    for (int i = 0; i < n; i++) {
+        int original_idx = blocks[i].id;
+        for (int j = 0; j < m; j++) {
+            current_prefix_sum += a[original_idx][j];
+            total_score += current_prefix_sum;
+        }
     }
-    cout << n << " ";
-    for (int i= 1; i <= n-1; i++){
-        cout << i << " ";
-    }
-    for (int i = 1; i <= n; i++){
-        cout << i << (i == n ? "" : " ");
-    }
-    cout << "\n";
+    cout << total_score << "\n";
 }
 
 int main() {

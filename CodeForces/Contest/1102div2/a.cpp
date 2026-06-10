@@ -21,20 +21,25 @@ const int MOD = 1e9 + 7;
 void Solve() {
     int n;
     cin >> n;
-    for (int i =1; i <= n; i++){
-        cout << i << " ";
+    
+    vector<long long> b(n);
+    for (int i = 0; i < n; i++) {
+        cin >> b[i];
     }
-    for (int i=1; i <= n; i++){
-        cout << i << " ";
+    sort(b.rbegin(), b.rend());
+    bool possible = true;
+    for (int i = 0; i < n - 2; i++) {
+        if (b[i] % b[i+1] != b[i+2]) {
+            possible = false;
+            break;
+        }
     }
-    cout << n << " ";
-    for (int i= 1; i <= n-1; i++){
-        cout << i << " ";
+    if (possible) {
+        cout << b[0] << " " << b[1] << "\n";
+    } else {
+        cout << "-1\n";
     }
-    for (int i = 1; i <= n; i++){
-        cout << i << (i == n ? "" : " ");
-    }
-    cout << "\n";
+    
 }
 
 int main() {

@@ -19,22 +19,16 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n;
+    long long n;
     cin >> n;
-    for (int i =1; i <= n; i++){
-        cout << i << " ";
+    vector<long long> smallest_palindromes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 11};
+    long long a = smallest_palindromes[n % 12];
+    if (a <= n) {
+        long long b = n - a;
+        cout << a << " " << b << "\n";
+    } else {
+        cout << -1 << "\n";
     }
-    for (int i=1; i <= n; i++){
-        cout << i << " ";
-    }
-    cout << n << " ";
-    for (int i= 1; i <= n-1; i++){
-        cout << i << " ";
-    }
-    for (int i = 1; i <= n; i++){
-        cout << i << (i == n ? "" : " ");
-    }
-    cout << "\n";
 }
 
 int main() {

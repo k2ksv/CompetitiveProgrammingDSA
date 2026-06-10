@@ -19,22 +19,20 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n;
-    cin >> n;
-    for (int i =1; i <= n; i++){
-        cout << i << " ";
+    string s;
+    cin >> s;
+    bool can_collapse = false;
+    for (int i = 0; i < (int)s.length() - 1; i++) {
+        if (s[i] == s[i + 1]) {
+            can_collapse = true;
+            break;
+        }
     }
-    for (int i=1; i <= n; i++){
-        cout << i << " ";
+    if (can_collapse) {
+        cout << 1 << "\n";
+    } else {
+        cout << s.length() << "\n";
     }
-    cout << n << " ";
-    for (int i= 1; i <= n-1; i++){
-        cout << i << " ";
-    }
-    for (int i = 1; i <= n; i++){
-        cout << i << (i == n ? "" : " ");
-    }
-    cout << "\n";
 }
 
 int main() {

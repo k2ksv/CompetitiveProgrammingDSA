@@ -19,22 +19,36 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n;
-    cin >> n;
-    for (int i =1; i <= n; i++){
-        cout << i << " ";
+    int n, m;
+    cin >> n >> m;
+    vector<ll> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-    for (int i=1; i <= n; i++){
-        cout << i << " ";
+    vector<ll> b(m);
+    for (int i = 0; i < m; i++) {
+        cin >> b[i];
     }
-    cout << n << " ";
-    for (int i= 1; i <= n-1; i++){
-        cout << i << " ";
+    sort(b.begin(), b.end());
+    ll prev = -INF;
+    for (int i = 0; i < n; i++) {
+        ll choice1 = INF;
+        ll choice2 = INF;
+        if (a[i] >= prev) {
+            choice1 = a[i];
+        }
+        auto it = lower_bound(b.begin(), b.end(), prev + a[i]);
+        if (it != b.end()) {
+            choice2 = *it - a[i];
+        }
+        prev = min(choice1, choice2);
+        if (prev == INF) {
+            cout << "NO\n";
+            return;
+        }
     }
-    for (int i = 1; i <= n; i++){
-        cout << i << (i == n ? "" : " ");
-    }
-    cout << "\n";
+    cout << "YES\n";
+    
 }
 
 int main() {

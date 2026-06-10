@@ -19,27 +19,20 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n;
-    cin >> n;
-    
-    vector<long long> b(n);
-    for (int i = 0; i < n; i++) {
-        cin >> b[i];
-    }
-    sort(b.rbegin(), b.rend());
-    bool possible = true;
-    for (int i = 0; i < n - 2; i++) {
-        if (b[i] % b[i+1] != b[i+2]) {
-            possible = false;
-            break;
-        }
-    }
-    if (possible) {
-        cout << b[0] << " " << b[1] << "\n";
+    ll n, x, y, z;
+    cin >> n >> x >> y >> z;
+    ll t1 = (n + (x + y) - 1)/(x + y);
+    ll t2;
+    ll lds = z * x;
+    if (n <= lds){
+        t2 = (n + x - 1) / x; 
     } else {
-        cout << "-1\n";
+        ll rl= n - lds;
+        ll speedai = x + 10 * y;
+        ll tr = (rl + speedai-1) / speedai;
+        t2 = z + tr;
     }
-    
+    cout << min(t1, t2) << "\n";
 }
 
 int main() {
