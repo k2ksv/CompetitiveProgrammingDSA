@@ -19,7 +19,28 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    
+    ll a, b, x;
+    cin >> a >> b >> x;
+    ll minO= abs(a - b);
+    ll currA = a;
+    ll opsA = 0;
+    while (true) {
+        ll currB = b;
+        ll opsB = 0;
+        while (true) {
+            ll currentCost = opsA + opsB + abs(currA - currB);
+            minO = min(minO, currentCost);
+            
+            if (currB == 0) break; 
+            currB /= x;
+            opsB++;
+        }
+        
+        if (currA == 0) break; 
+        currA /= x;
+        opsA++;
+    }
+    cout << minO << "\n";
 }
 
 int main() {

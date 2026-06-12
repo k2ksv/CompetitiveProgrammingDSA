@@ -18,29 +18,35 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
-void Solve() {
-    int n, k;
-    cin >> n >> k;
-    string s;
-    cin >> s;
-    vector<int> chainCounts(k, 0);
-    for (int i = 0; i < n; i++) {
-        if (s[i] == '1') {
-            chainCounts[i % k]++;
+bool check(string s, string t){
+    int n = s.length();
+    int m = t.length();
+    
+    for (int i = 0; i < n; i++){
+        if (i + m > n) break;
+        
+        bool good = true;
+        for (int j = 0; j < m; j++){
+            if (t[j] != s[i + j]) good = false;
         }
+        
+        if (good) return true;
     }
-    bool isPossible = true;
-    for (int i = 0; i < k; i++) {
-        if (chainCounts[i] % 2 != 0) {
-            isPossible = false;
-            break;
+    return false;
+}
+ 
+void Solve() 
+{
+    int n, m; cin >> n >> m;
+    string s, t; cin >> s >> t;
+    for (int i = 0; i <= 5; i++){
+        if (check(s, t)){
+            cout << i << "\n";
+            return;
         }
+        s = s + s;
     }
-    if (isPossible) {
-        cout << "YES\n";
-    } else {
-        cout << "NO\n";
-    }
+    cout << -1 << "\n";
 }
 
 int main() {

@@ -19,28 +19,22 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    int n, k;
-    cin >> n >> k;
-    string s;
-    cin >> s;
-    vector<int> chainCounts(k, 0);
-    for (int i = 0; i < n; i++) {
-        if (s[i] == '1') {
-            chainCounts[i % k]++;
-        }
+    int n;
+    cin >> n;
+    for (int i =1; i <= n; i++){
+        cout << i << " ";
     }
-    bool isPossible = true;
-    for (int i = 0; i < k; i++) {
-        if (chainCounts[i] % 2 != 0) {
-            isPossible = false;
-            break;
-        }
+    for (int i=1; i <= n; i++){
+        cout << i << " ";
     }
-    if (isPossible) {
-        cout << "YES\n";
-    } else {
-        cout << "NO\n";
+    cout << n << " ";
+    for (int i= 1; i <= n-1; i++){
+        cout << i << " ";
     }
+    for (int i = 1; i <= n; i++){
+        cout << i << (i == n ? "" : " ");
+    }
+    cout << "\n";
 }
 
 int main() {

@@ -19,20 +19,18 @@ const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
 void Solve() {
-    ll n, x, y, z;
-    cin >> n >> x >> y >> z;
-    ll t1 = (n + (x + y) - 1)/(x + y);
-    ll t2;
-    ll lds = z * x;
-    if (n <= lds){
-        t2 = (n + x - 1) / x; 
-    } else {
-        ll rl= n - lds;
-        ll speedai = x + 10 * y;
-        ll tr = (rl + speedai-1) / speedai;
-        t2 = z + tr;
+    int n;
+    cin >> n;
+    int maxH = 0;
+    int minH = 7; 
+    for (int i = 0; i < n; i++) {
+        int h;
+        cin >> h;
+        maxH = max(maxH, h);
+        minH = min(minH, h);
     }
-    cout << min(t1, t2) << "\n";
+    int k = maxH - minH + 1;
+    cout << k << "\n";
 }
 
 int main() {
