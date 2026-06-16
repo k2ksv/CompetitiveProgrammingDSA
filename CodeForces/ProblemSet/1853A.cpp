@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 14.06.2026 20:17:09
+*        created: 15.06.2026 22:52:21
 **/
 
 #include <bits/stdc++.h>
@@ -37,7 +37,25 @@ int x = INT_MIN    //Smallest Possible INTEGER
 */
 
 void Solve() {
+    int n; 
+    cin >> n;
     
+    vector<int> a(n);
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    int minOps = INT_MAX;
+    for(int i = 0; i < n - 1; i++){
+        if (a[i] > a[i+1]) {
+            cout << 0 << "\n";
+            return;
+        }
+        int diff = a[i+1] - a[i];
+        int currentOps = (diff / 2) + 1;
+        minOps = min(minOps, currentOps);
+    }
+    cout << minOps << "\n";
+
 }
 
 int main() {

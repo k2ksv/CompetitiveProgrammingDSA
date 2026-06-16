@@ -1,9 +1,3 @@
-/**
-*    a LGM is just a NEWBIE who kept trying
-*                author: K2
-*        created: 14.06.2026 20:17:09
-**/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -32,11 +26,18 @@ const int dy[4] = {0, 1, 0, -1};
 const int ddx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 const int ddy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
-/*
-int x = INT_MIN    //Smallest Possible INTEGER
-*/
-
 void Solve() {
+    int N;
+    cin >> N;
+
+    int minO = 2000000;
+    for(int i = 0; i < N; i++){
+        int num;
+        cin >> num;
+        minO = min(minO, abs(num));
+
+    }
+    cout << minO << "\n";
     
 }
 
@@ -54,7 +55,7 @@ int main() {
 #endif
 
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--) { 
         Solve();
     }

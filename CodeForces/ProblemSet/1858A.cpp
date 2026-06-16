@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 14.06.2026 20:17:09
+*        created: 15.06.2026 22:04:04
 **/
 
 #include <bits/stdc++.h>
@@ -37,7 +37,22 @@ int x = INT_MIN    //Smallest Possible INTEGER
 */
 
 void Solve() {
-    
+    int a, b , c;
+    cin >> a >> b >> c;
+
+    if(c%2==0){
+        if(b >= a){
+            cout << "Second" << "\n";
+        }else{
+            cout << "First" << "\n";
+        }
+    }else{
+        if(a >= b){
+            cout << "First" << "\n";
+        }else{
+            cout << "Second" << "\n";
+        }
+    }
 }
 
 int main() {

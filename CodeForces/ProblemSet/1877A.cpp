@@ -1,9 +1,3 @@
-/**
-*    a LGM is just a NEWBIE who kept trying
-*                author: K2
-*        created: 14.06.2026 20:17:09
-**/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -24,20 +18,18 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
-// 4-Directional movement (Up, Right, Down, Left)
-const int dx[4] = {-1, 0, 1, 0};
-const int dy[4] = {0, 1, 0, -1};
-
-// 8-Directional movement (Including diagonals)
-const int ddx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
-const int ddy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
-
-/*
-int x = INT_MIN    //Smallest Possible INTEGER
-*/
-
 void Solve() {
-    
+    int n;
+    cin >> n;
+    int sum = 0;
+
+    for(int i = 0; i < n-1; i++){
+        int x;
+        cin >> x;
+        sum += x;
+    }
+
+    cout << -sum << "\n";
 }
 
 int main() {
@@ -71,6 +63,4 @@ int main() {
 
 /*
 THINK DIFFERENTLY
-DON'T GET STUCK ON SINGLE APPROACH
-JSUT TRY
 */
