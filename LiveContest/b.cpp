@@ -1,3 +1,9 @@
+/**
+*    a LGM is just a NEWBIE who kept trying
+*                author: K2
+*        created: 18.06.2026 20:20:57
+**/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,29 +24,47 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
+// 4-Directional movement (Up, Right, Down, Left)
+const int dx[4] = {-1, 0, 1, 0};
+const int dy[4] = {0, 1, 0, -1};
+
+// 8-Directional movement (Including diagonals)
+const int ddx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+const int ddy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+/*
+int x = INT_MIN    //Smallest Possible INTEGER
+int x = INT_MAX    //Largest Possible INTEGER
+*/
+
 void Solve() {
-    int n, k;
-    cin >> n >> k;
-    string s;
-    cin >> s;
-    vector<int> chainCounts(k, 0);
+    int n; cin >> n;
+    vector<long long> a(n);
+    for (auto &x: a) cin >> x;
+    
+    vector<ll> b(n);
+    for(auto &x: b) cin >> x;
+    
+    vector<ll> sorted_a = a;
+    sort(sorted_a.begin(), sorted_a.end());
+    
     for (int i = 0; i < n; i++) {
-        if (s[i] == '1') {
-            chainCounts[i % k]++;
+        if (sorted_a[i] > b[i]) {
+            cout << -1 << "\n";
+            return;
         }
     }
-    bool isPossible = true;
-    for (int i = 0; i < k; i++) {
-        if (chainCounts[i] % 2 != 0) {
-            isPossible = false;
-            break;
+    ll swaps = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < a.size(); j++) {
+            if (a[j] <= b[i]) {
+                swaps += j;
+                a.erase(a.begin() + j);
+                break;
+            }
         }
     }
-    if (isPossible) {
-        cout << "YES\n";
-    } else {
-        cout << "NO\n";
-    }
+    cout << swaps << "\n";
 }
 
 int main() {
@@ -74,4 +98,6 @@ int main() {
 
 /*
 THINK DIFFERENTLY
+DON'T GET STUCK ON SINGLE APPROACH
+JSUT TRY
 */

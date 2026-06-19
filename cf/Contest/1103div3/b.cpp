@@ -1,9 +1,3 @@
-/**
-*    a LGM is just a NEWBIE who kept trying
-*                author: K2
-*        created: 18.06.2026 20:43:39
-**/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -24,39 +18,29 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
-// 4-Directional movement (Up, Right, Down, Left)
-const int dx[4] = {-1, 0, 1, 0};
-const int dy[4] = {0, 1, 0, -1};
-
-// 8-Directional movement (Including diagonals)
-const int ddx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
-const int ddy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
-
-/*
-int x = INT_MIN    //Smallest Possible INTEGER
-int x = INT_MAX    //Largest Possible INTEGER
-*/
-
 void Solve() {
-    int n;
-    cin >> n;
-    long long cm = 0;
+    int n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+    vector<int> chainCounts(k, 0);
     for (int i = 0; i < n; i++) {
-        long long x;
-        cin >> x;
-        
-        if (i == 0) {
-            cm = x;
-        } else {
-            if (cm > x) {
-                cm += x;
-            } 
-            else {
-                cm = x;
-            }
+        if (s[i] == '1') {
+            chainCounts[i % k]++;
         }
     }
-    cout << cm << "\n";
+    bool isPossible = true;
+    for (int i = 0; i < k; i++) {
+        if (chainCounts[i] % 2 != 0) {
+            isPossible = false;
+            break;
+        }
+    }
+    if (isPossible) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
 }
 
 int main() {
@@ -90,6 +74,4 @@ int main() {
 
 /*
 THINK DIFFERENTLY
-DON'T GET STUCK ON SINGLE APPROACH
-JSUT TRY
 */

@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 18.06.2026 20:43:39
+*        created: 19.06.2026 12:25:14
 **/
 
 #include <bits/stdc++.h>
@@ -38,25 +38,25 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    int n;
-    cin >> n;
-    long long cm = 0;
-    for (int i = 0; i < n; i++) {
-        long long x;
-        cin >> x;
-        
-        if (i == 0) {
-            cm = x;
-        } else {
-            if (cm > x) {
-                cm += x;
-            } 
-            else {
-                cm = x;
-            }
+    int a, b;
+    cin >> a >> b;
+    int xK, yK, xQ, yQ;
+    cin >> xK >> yK >> xQ >> yQ;
+    int dx[] = {a, a, -a, -a, b, b, -b, -b};
+    int dy[] = {b, -b, b, -b, a, -a, a, -a};
+    set<pair<int, int>> KA;
+    set<pair<int, int>> QA;
+    for (int i = 0; i < 8; i++) {
+        KA.insert({xK + dx[i], yK + dy[i]});
+        QA.insert({xQ + dx[i], yQ + dy[i]});
+    }
+    int forks = 0;
+    for (auto cell : KA) {
+        if (QA.count(cell)) {
+            forks++;
         }
     }
-    cout << cm << "\n";
+    cout << forks << "\n";
 }
 
 int main() {

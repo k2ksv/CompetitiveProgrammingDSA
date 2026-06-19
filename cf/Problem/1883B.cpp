@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 18.06.2026 20:43:39
+*        created: 19.06.2026 19:30:36
 **/
 
 #include <bits/stdc++.h>
@@ -24,13 +24,13 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
-// 4-Directional movement (Up, Right, Down, Left)
-const int dx[4] = {-1, 0, 1, 0};
-const int dy[4] = {0, 1, 0, -1};
+// Standard 4-directional movement (Up, Down, Left, Right)
+// int dx[] = {-1, 1, 0, 0};
+// int dy[] = {0, 0, -1, 1};
 
-// 8-Directional movement (Including diagonals)
-const int ddx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
-const int ddy[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+// 8-Directional movement (King's moves / surrounding cells)
+// int ddx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+// int ddy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
 /*
 int x = INT_MIN    //Smallest Possible INTEGER
@@ -38,25 +38,35 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    int n;
-    cin >> n;
-    long long cm = 0;
-    for (int i = 0; i < n; i++) {
-        long long x;
-        cin >> x;
-        
-        if (i == 0) {
-            cm = x;
-        } else {
-            if (cm > x) {
-                cm += x;
-            } 
-            else {
-                cm = x;
-            }
+    int n, k;
+    cin >> n >> k;
+    
+    string s;
+    cin >> s;
+    vector<int> freq(26, 0);
+    for (char c : s) {
+        freq[c - 'a']++;
+    }
+    
+    int odd_count = 0;
+    for (int i = 0; i < 26; i++) {
+        if (freq[i] % 2 != 0) {
+            odd_count++;
         }
     }
-    cout << cm << "\n";
+    if (k >= odd_count - 1) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
+
+    // int N, K; cin >> N >> K;
+	// std::array<int, 26> cnt; cnt.fill(0);
+	// std::string s; cin >> s;
+	// for (char c : s) cnt[c - 'a'] ^= 1;
+	// int num_odd = 0;
+	// for (int a : cnt) num_odd += a;
+	// cout << (K < num_odd - 1 ? "NO" : "YES") << '\n';
 }
 
 int main() {

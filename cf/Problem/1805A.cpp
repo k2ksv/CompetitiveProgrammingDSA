@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 18.06.2026 20:43:39
+*        created: 18.06.2026 09:34:02
 **/
 
 #include <bits/stdc++.h>
@@ -40,23 +40,23 @@ int x = INT_MAX    //Largest Possible INTEGER
 void Solve() {
     int n;
     cin >> n;
-    long long cm = 0;
+    
+    int totalXor = 0;
     for (int i = 0; i < n; i++) {
-        long long x;
-        cin >> x;
-        
-        if (i == 0) {
-            cm = x;
+        int a;
+        cin >> a;
+        totalXor ^= a; 
+    }
+    if (n % 2 != 0) {
+        cout << totalXor << "\n";
+    } 
+    else {
+        if (totalXor == 0) {
+            cout << 0 << "\n"; 
         } else {
-            if (cm > x) {
-                cm += x;
-            } 
-            else {
-                cm = x;
-            }
+            cout << -1 << "\n"; 
         }
     }
-    cout << cm << "\n";
 }
 
 int main() {
