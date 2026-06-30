@@ -1,1 +1,4 @@
-Output from input.txt: 6
+11
+101
+1001
+10001

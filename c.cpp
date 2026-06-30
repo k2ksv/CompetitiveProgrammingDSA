@@ -40,7 +40,6 @@ int x = INT_MAX    //Largest Possible INTEGER
 
 void Solve() {
     
-    
 }
 
 //int32_t main() {

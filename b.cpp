@@ -39,8 +39,17 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    
-    
+    string s; cin >> s;
+    ll l = s.length();
+
+    ll y = 1;
+
+    for(ll i = 0; i < l; i++) {
+    	y *=10;
+    }
+    y += 1;
+
+    cout << y << '\n';
 }
 
 //int32_t main() {

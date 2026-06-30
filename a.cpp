@@ -39,8 +39,14 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    
-    
+    int x; int y; cin >> x; cin >> y;
+
+    if (x % y == 0) {
+    	cout << "YES" << '\n';
+    }
+    else {
+    	cout << "NO" << '\n';
+    }
 }
 
 //int32_t main() {
