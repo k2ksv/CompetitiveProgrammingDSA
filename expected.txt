@@ -1,4 +1,7 @@
-11
-4
-26
-3366
+YES
+YES
+NO
+YES
+NO
+YES
+NO
