@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 04.07.2026 12:28:14
+*        created: 04.07.2026 23:18:33
 **/
 
 #include <bits/stdc++.h>
@@ -39,39 +39,21 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    int n, m, k;
-    cin >> n >> m >> k;
-    
-    vector<int> applicants(n);
-    for (int i = 0; i < n; i++) {
-        cin >> applicants[i];
+    ll a, b, c; cin >> a >> b >> c;
+    if((2 * b - c) > 0 && (2 * b - c) % a == 0) {
+        cout << "YES\n";
+        return;
     }
-    
-    vector<int> apartments(m);
-    for (int i = 0; i < m; i++) {
-        cin >> apartments[i];
+    if((a + c) % (2 * b) == 0) {
+        cout << "YES\n";
+        return;
     }
-    sort(applicants.begin(), applicants.end());
-    sort(apartments.begin(), apartments.end());
-    
-    int i = 0; 
-    int j = 0; 
-    int matches = 0;
-    while (i < n && j < m) {
-        if (apartments[j] < applicants[i] - k) {
-            j++;
-        }
-        else if (apartments[j] > applicants[i] + k) {
-            i++; 
-        }
-        else {
-            matches++;
-            i++; 
-            j++;
-        }
+    if((2 * b - a) > 0 && (2 * b - a) % c == 0) {
+        cout << "YES\n";
+        return;
     }
+    cout << "NO\n";
     
-    cout << matches << "\n";
 }
 
 //int32_t main() {
@@ -89,7 +71,7 @@ int main() {
 #endif
 
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while (t--) { 
         Solve();
     }
