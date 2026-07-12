@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 13.07.2026 01:08:59
+*        created: 07.07.2026 00:36:06
 **/
 
 #include <bits/stdc++.h>
@@ -39,7 +39,14 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
+    string s; cin >> s;
     
+    int zero = 0; int one = 0;
+    for (char c : s) {
+        if (c == '0'? zero++ : one++);
+    }    
+    int move = min(zero, one);
+    cout << (move % 2 == 1 ? "DA" : "NET") << '\n';
 }
 
 //int32_t main() {
@@ -76,4 +83,4 @@ int main() {
 ALWAYS TRY TO FIND MATHEMATICAL EQUATIONS
 THINK DIFFERENTLY
 DON'T GET STUCK ON SINGLE APPROACH
-*/
+*/  

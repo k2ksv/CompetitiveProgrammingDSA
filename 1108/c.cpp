@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 13.07.2026 01:08:59
+*        created: 12.07.2026 20:13:11
 **/
 
 #include <bits/stdc++.h>
@@ -38,8 +38,44 @@ int x = INT_MIN    //Smallest Possible INTEGER
 int x = INT_MAX    //Largest Possible INTEGER
 */
 
+ll pwr(ll base, ll exp){
+    ll res = 1;
+    base %= MOD;
+    while (exp > 0){
+        if (exp%2 == 1) res = (res*base) % MOD;
+        base = (base*base) % MOD;
+        exp /= 2;
+    }return res;
+}
 void Solve() {
-    
+    int n; cin >> n;
+    int c = 0; 
+    vector<pair<int, int>> pn;
+    for(int i = 0; i < n; i++){
+        int x; cin >> x;
+        if(x == -1){
+            c++;
+        }else{
+            if(pn.empty() || pn.back().first != x){
+                pn.push_back({x, 1});
+            }else{
+                pn.back().second++;
+            }
+        }
+    }
+    ll bw = 1; ll adj = 0;
+    for(int i = 0; i < pn.size(); i++){
+        bw = (bw * pwr(2, pn[i].second - 1))%MOD;
+        if (i + 1 < pn.size() && pn[i+1].first == pn[i].first+1){
+            adj++;
+        }
+    }
+    ll x1 = (c>0)?pwr(2, c-1):1;
+    ll x2 = (c>0)?pwr(2, c-1):0;
+    ll ans = (adj * x2)%MOD;
+    ans=(ans+x1)%MOD;
+    ans=(ans*bw)%MOD;
+    cout << ans << '\n';
 }
 
 //int32_t main() {

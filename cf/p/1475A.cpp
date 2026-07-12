@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 13.07.2026 01:08:59
+*        created: 08.07.2026 20:05:42
 **/
 
 #include <bits/stdc++.h>
@@ -39,7 +39,8 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    
+    ll n; cin >> n;
+    cout << ((n&(n-1))==0?"NO":"YES") << '\n';
 }
 
 //int32_t main() {

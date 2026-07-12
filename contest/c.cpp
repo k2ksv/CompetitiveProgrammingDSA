@@ -1,7 +1,7 @@
 /**
 *    a LGM is just a NEWBIE who kept trying
 *                author: K2
-*        created: 13.07.2026 01:08:59
+*        created: 06.07.2026 20:00:25
 **/
 
 #include <bits/stdc++.h>
@@ -23,7 +23,7 @@ mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 
 const ll  INF = 2e18;
-const int MOD = 1e9 + 7;
+int MOD = 1e9 + 7;
 
 // Standard 4-directional movement (Up, Down, Left, Right)
 // int dx[] = {-1, 1, 0, 0};
@@ -39,9 +39,51 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    
-}
+    int n, k;
+    cin >> n >> k;
 
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) 
+    {
+        cin >> a[i];
+    }
+    
+    vector<int> lens;
+
+    int cur = 1;
+    for (int i = 1; i < n; i++) 
+        if (a[i] != a[i - 1]) 
+        {
+            lens.push_back(cur);
+            cur = 1;
+        } 
+        else cur++;
+    lens.push_back(cur);
+    sort(lens.begin(), lens.end());
+
+    int m = (int)lens.size();
+    int d = 0;
+
+    int ans = 0;
+    int i = 0;
+    while(i < m)
+    {
+        int len = lens[i];
+        int x = len - 1;
+        int q = m - i;
+        int curLen = n - d - x * q;
+        if (curLen <= k && (k - curLen) % q == 0)
+            ans++;
+            
+        int j = i;
+        while (j < m && lens[j] == len)
+            j++;
+        d += (j - i) * lens[i];
+        i = j;
+    }
+
+    cout << ans << '\n';
+}
 //int32_t main() {
 int main() {
     ios::sync_with_stdio(false);
