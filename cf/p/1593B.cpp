@@ -39,19 +39,21 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    	string s;
-		cin >> s;
-		int n = s.length();
-		int ans = n;
-		for (int i = 0; i < n; i++) {
-			for (int j = i + 1; j < n; j++) {
-				int val = (s[i] - '0') * 10 + (s[j] - '0');
-				if (val % 25 == 0) {
-					ans = min(ans, j - i - 1 + n - 1 - j);
-				}
-			}
-		}
-		cout << ans << '\n';
+    	// string s;
+		// cin >> s;
+		// int n = s.length();
+		// int ans = n;
+		// for (int i = 0; i < n; i++) {
+		// 	for (int j = i + 1; j < n; j++) {
+		// 		int val = (s[i] - '0') * 10 + (s[j] - '0');
+		// 		if (val % 25 == 0) {
+		// 			ans = min(ans, j - i - 1 + n - 1 - j);
+		// 		}
+		// 	}
+		// }
+		// cout << ans << '\n';
+
+        
 }
 
 //int32_t main() {

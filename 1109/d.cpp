@@ -1,7 +1,7 @@
 /**
-* a LGM is just a NEWBIE who kept trying
-* author: K2
-* created: 30.06.2026 13:07:39
+*    a LGM is just a NEWBIE who kept trying
+*                author: K2
+*        created: 14.07.2026 20:34:14
 **/
 
 #include <bits/stdc++.h>
@@ -39,23 +39,31 @@ int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    string s; cin >> s;
-    int cnt0 = 0; int cnt1 = 0;
-    for(char c : s) {
-        if (c == '0') cnt0++;
-        else cnt1++;
-    }
-    int i = 0;
-    while(i < s.length()) {
-        if(s[i] == '0') cnt1--;
-        else cnt0--;
-        if (cnt0 < 0 || cnt1 < 0) {
-            break;
+    int n;int m; cin >> n >> m;
+    vector<ll> a(n);
+    for(ll &x:a) cin >> x;
+    
+    vector<int> b(m);
+    for(int &x:b) cin >> x;
+    sort(b.begin(), b.end());
+    ll ans = 0;
+    int pr = 0; 
+    
+    for (int i = 0; i < m; i++){
+        int cur = b[i];
+        ll seg = 0;
+        for (int j = pr; j < cur; j++){
+            seg += a[j];
         }
-        i++; 
+        ans += abs(seg);
+        pr = cur;
     }
-    cout << s.length() - i << '\n';
+    for (int j = pr; j < n; j++){
+        ans += a[j];
+    }
+    cout << ans << '\n';
 }
+
 //int32_t main() {
 int main() {
     ios::sync_with_stdio(false);

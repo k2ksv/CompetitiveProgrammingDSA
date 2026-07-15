@@ -1,7 +1,7 @@
 /**
-* a LGM is just a NEWBIE who kept trying
-* author: K2
-* created: 30.06.2026 13:07:39
+*    a LGM is just a NEWBIE who kept trying
+*                author: K2
+*        created: 15.07.2026 13:59:04
 **/
 
 #include <bits/stdc++.h>
@@ -38,24 +38,50 @@ int x = INT_MIN    //Smallest Possible INTEGER
 int x = INT_MAX    //Largest Possible INTEGER
 */
 
-void Solve() {
-    string s; cin >> s;
-    int cnt0 = 0; int cnt1 = 0;
-    for(char c : s) {
-        if (c == '0') cnt0++;
-        else cnt1++;
-    }
-    int i = 0;
-    while(i < s.length()) {
-        if(s[i] == '0') cnt1--;
-        else cnt0--;
-        if (cnt0 < 0 || cnt1 < 0) {
-            break;
+void Solve() 
+{
+    int n, k; cin >> n >> k;
+    
+    vector<vector<int>> dp(n + 1, vector<int>(k + 1, INF));
+    dp[0][1] = 0;
+    
+    for (int ok = 1; ok <= n; ok++){
+        int x; cin >> x;
+        
+        for (int add = 0; add < k; add++){
+            for (int i = 1; i <= k; i++){
+                dp[ok][__gcd(k, (x + add) * i)] = min(dp[ok][__gcd(k, (x + add) * i)], dp[ok - 1][i] + add);
+            }
         }
-        i++; 
     }
-    cout << s.length() - i << '\n';
+    cout << dp[n][k] << "\n";
 }
+
+// void Solve() {
+//     int n, k; cin >> n >> k;
+//     vector<int> arr(n);
+//     int evens = 0; 
+//     for(int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//         if (arr[i] % 2 == 0) {
+//             evens++;
+//         }
+//     }
+//     int ans = INT_MAX;
+//     for(int i = 0; i < n; i++) {
+//         if(arr[i] % k == 0) {
+//             cout << "0\n";
+//             return;
+//         }
+//         ans = min(ans, (k - (arr[i] % k)));
+//     }
+//     if (k == 4) {
+//         int cost = max(0, 2 - evens);
+//         ans = min(ans, cost);
+//     }
+//     cout << ans << '\n';
+// }
+
 //int32_t main() {
 int main() {
     ios::sync_with_stdio(false);
