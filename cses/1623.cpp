@@ -1,84 +1,55 @@
-/**
-*    a LGM is just a NEWBIE who kept trying
-*                author: K2
-*        created: 09.07.2026 23:23:26
-**/
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main() {
+	int n;
+	cin >> n;
+	vector<ll> weights(n);
+	for (ll &w : weights) { cin >> w; }
+
+	ll ans = INT64_MAX;
+	for (int mask = 0; mask < (1 << n); mask++) {
+		ll sum1 = 0;
+		ll sum2 = 0;
+		for (int i = 0; i < n; i++) {
+			// Check if the ith bit is toggled
+			if (mask & (1 << i)) {
+				// If it is, the apple is included in sum1
+				sum1 += weights[i];
+			} else {
+				sum2 += weights[i];
+			}
+		}
+		ans = min(ans, abs(sum1 - sum2));
+	}
+
+	cout << ans << endl;
+}
+
+
 
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-//#define int long long
-using ll  = long long;
+int n;
+vector<long long> weights;
 
-/* debug */
-#ifdef LOCAL
-  #define dbg(x) cerr << #x << " = " << (x) << '\n'
-  #define dbg2(x,y) cerr << #x << "=" << (x) << " " << #y << "=" << (y) << '\n'
-#else
-  #define dbg(x)
-  #define dbg2(x,y)
-#endif
+ll recurse_apples(int index, ll sum1, ll sum2) {
+	// We've added all apples- return the absolute difference
+	if (index == n) { return abs(sum1 - sum2); }
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
-
-const ll  INF = 2e18;
-const int MOD = 1e9 + 7;
-
-// Standard 4-directional movement (Up, Down, Left, Right)
-// int dx[] = {-1, 1, 0, 0};
-// int dy[] = {0, 0, -1, 1};
-
-// 8-Directional movement (King's moves / surrounding cells)
-// int ddx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-// int ddy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-
-/*
-int x = INT_MIN    //Smallest Possible INTEGER
-int x = INT_MAX    //Largest Possible INTEGER
-*/
-
-void Solve() {
-    ll n; cin >> n;
-    vector<ll> p(n);
-    for(auto &x : p) cin >> x;
-    
-
-
+	// Try adding the current apple to either the first or second set
+	return min(recurse_apples(index + 1, sum1 + weights[index], sum2),
+	           recurse_apples(index + 1, sum1, sum2 + weights[index]));
 }
 
-//int32_t main() {
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+	cin >> n;
+	weights.resize(n);
+	for (int i = 0; i < n; i++) { cin >> weights[i]; }
 
-#ifndef ONLINE_JUDGE
-    (void)freopen("input.txt",  "r", stdin);
-    (void)freopen("output.txt", "w", stdout);
-#endif
-
-#ifdef LOCAL
-    auto _t0 = chrono::high_resolution_clock::now();
-#endif
-
-    int t = 1;
-    // cin >> t;
-    while (t--) { 
-        Solve();
-    }
-
-#ifdef LOCAL
-    auto _t1 = chrono::high_resolution_clock::now();
-    cerr << "\n[time] "
-         << chrono::duration_cast<chrono::milliseconds>(_t1-_t0).count()
-         << " ms\n";
-#endif
-
-    return 0;
+	// Solve the problem starting at apple 0 with both sets being empty
+	cout << recurse_apples(0, 0, 0) << endl;
 }
-
-/*
-ALWAYS TRY TO FIND MATHEMATICAL EQUATIONS
-THINK DIFFERENTLY
-DON'T GET STUCK ON SINGLE APPROACH
-*/

@@ -1,16 +1,14 @@
 /**
- *    a LGM is just a NEWBIE who kept trying
- *                author: K2
- *        created: 18.07.2026 18:24:51
- **/
+*    a LGM is just a NEWBIE who kept trying
+*                author: K2
+*        created: 16.07.2026 20:22:48
+**/
 
 #include <bits/stdc++.h>
 using namespace std;
 
 //#define int long long
 using ll  = long long;
-#define f first
-#define s second
 
 /* debug */
 #ifdef LOCAL
@@ -27,9 +25,6 @@ auto randint(ll l, ll r) { return uniform_int_distribution<ll>(l,r)(rng); }
 const ll  INF = 2e18;
 const int MOD = 1e9 + 7;
 
-template<class T> bool chmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
-template<class T> bool chmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-
 // Standard 4-directional movement (Up, Down, Left, Right)
 // int dx[] = {-1, 1, 0, 0};
 // int dy[] = {0, 0, -1, 1};
@@ -39,25 +34,27 @@ template<class T> bool chmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 // int ddy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
 /*
-int x = INT_MIN    // Smallest 32-bit INTEGER (-2e9)
-int x = INT_MAX    // Largest  32-bit INTEGER (2e9)
-ll y = LLONG_MIN   // Smallest  64-bit LONG LONG (-9e18)
-ll y = LLONG_MAX   // Largest  64-bit LONG LONG (9e18)
-*/
-
-/*
-QUICK TRICKS:
-- __lg(x) : Gets the highest set bit (floor(log2(x))) instantly in O(1).
-- return void(cout << "NO\n"); : One-liner bail out for impossible cases.
-- (1LL << i) : Calculates 2^i safely for long long (Bitmasking).
-- (A + B - 1) / B : Math trick for Ceiling Division (ceil(A / B)) without floats!
+int x = INT_MIN    //Smallest Possible INTEGER
+int x = INT_MAX    //Largest Possible INTEGER
 */
 
 void Solve() {
-    int h; int w; cin >> h >> w;
-    w=w*10000;
-    int bmi = w/(h*h);
-    cout << (bmi>=25?"Yes":"No") << "\n";
+    ll n; ll c; cin >> n >> c;
+    
+    vector<ll> a(n);
+    for(auto &x:a) cin >> x;
+    sort(a.rbegin(), a.rend());
+
+    vector<ll> p(n + 1, 0);
+    for (int i = 0; i<n; ++i) p[i+1] = p[i]+a[i];
+    
+    ll ans =LLONG_MIN;
+    int mn = (n+1)/2;
+    for (int k = mn; k <= n; ++k){
+        ans = max(ans, p[k]-(k*c));
+    }
+    
+    cout << ans << '\n';
 }
 
 //int32_t main() {
@@ -74,11 +71,11 @@ int main() {
     auto _t0 = chrono::high_resolution_clock::now();
 #endif
 
-    // int t = 1;
-    // cin >> t;
-    // while (t--) { 
-    // }
-    Solve();
+    int t = 1;
+    cin >> t;
+    while (t--) { 
+        Solve();
+    }
 
 #ifdef LOCAL
     auto _t1 = chrono::high_resolution_clock::now();

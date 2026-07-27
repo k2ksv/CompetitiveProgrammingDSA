@@ -1,7 +1,7 @@
 /**
  *    a LGM is just a NEWBIE who kept trying
  *                author: K2
- *        created: 18.07.2026 18:24:51
+ *        created: 18.07.2026 20:19:33
  **/
 
 #include <bits/stdc++.h>
@@ -54,10 +54,38 @@ QUICK TRICKS:
 */
 
 void Solve() {
-    int h; int w; cin >> h >> w;
-    w=w*10000;
-    int bmi = w/(h*h);
-    cout << (bmi>=25?"Yes":"No") << "\n";
+    int n; cin >> n;
+    vector<int> a(n);
+    int aa = 0;
+    for(auto &x:a){
+        cin >> x;
+        if(x==1) aa++;
+    }
+    vector<int> b(n);
+    int bb = 0;
+    for(auto &x:b){
+        cin >> x; 
+        if(x==0) bb++;
+    }
+    int c = 0; 
+    bool flag = true;
+    for(int i = 0; i<n; i++){
+        if(a[i] != b[i]){
+            flag = false;
+        }
+        if(a[i] == 1 && b[i] == 0){
+            c++;
+        }
+    }
+    if (flag){
+        cout << 0 << "\n";
+        return;
+    }
+    if (aa == 0 || bb == 0){
+        cout << -1 << "\n"; 
+        return;
+    }
+    cout << (c%2!=0?1:2) << "\n";
 }
 
 //int32_t main() {
@@ -74,11 +102,11 @@ int main() {
     auto _t0 = chrono::high_resolution_clock::now();
 #endif
 
-    // int t = 1;
-    // cin >> t;
-    // while (t--) { 
-    // }
-    Solve();
+    int t = 1;
+    cin >> t;
+    while (t--) { 
+        Solve();
+    }
 
 #ifdef LOCAL
     auto _t1 = chrono::high_resolution_clock::now();

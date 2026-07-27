@@ -1,13 +1,13 @@
 /**
  *    a LGM is just a NEWBIE who kept trying
  *                author: K2
- *        created: 18.07.2026 18:24:51
+ *        created: 17.07.2026 20:53:45
  **/
 
 #include <bits/stdc++.h>
 using namespace std;
 
-//#define int long long
+#define int long long
 using ll  = long long;
 #define f first
 #define s second
@@ -39,10 +39,10 @@ template<class T> bool chmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 // int ddy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
 /*
-int x = INT_MIN    // Smallest 32-bit INTEGER (-2e9)
-int x = INT_MAX    // Largest  32-bit INTEGER (2e9)
-ll y = LLONG_MIN   // Smallest  64-bit LONG LONG (-9e18)
-ll y = LLONG_MAX   // Largest  64-bit LONG LONG (9e18)
+int x = INT_MIN    // Smallest Possible 32-bit INTEGER (-2e9)
+int x = INT_MAX    // Largest Possible 32-bit INTEGER (2e9)
+ll y = LLONG_MIN   // Smallest Possible 64-bit LONG LONG (-9e18) -> USE THIS FOR SCORE MAXIMIZATION!
+ll y = LLONG_MAX   // Largest Possible 64-bit LONG LONG (9e18)
 */
 
 /*
@@ -54,14 +54,32 @@ QUICK TRICKS:
 */
 
 void Solve() {
-    int h; int w; cin >> h >> w;
-    w=w*10000;
-    int bmi = w/(h*h);
-    cout << (bmi>=25?"Yes":"No") << "\n";
+    int n, p; cin >> n >> p;
+    
+    vector <pair<int, int>> a(n);
+    for (auto &x : a) cin >> x.s;
+    for (auto &x : a) cin >> x.f, x.f = min(x.f, p);
+    
+    sort(a.begin(), a.end(), [&](pair <int, int> x, pair<int, int> y){
+        if (x.f != y.f) return x.f < y.f;
+        else return x.s > y.s;
+    });
+    
+    int need = n - 1;
+    int ans = p;
+    
+    for (int i = 0; i < n; i++){
+        while (need > 0 && a[i].s > 0){
+            a[i].s--;
+            ans += min(p, a[i].f);
+            need--;
+        }
+    }
+    cout << ans << "\n";
 }
 
-//int32_t main() {
-int main() {
+int32_t main() {
+//int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
@@ -74,11 +92,11 @@ int main() {
     auto _t0 = chrono::high_resolution_clock::now();
 #endif
 
-    // int t = 1;
-    // cin >> t;
-    // while (t--) { 
-    // }
-    Solve();
+    int t = 1;
+    cin >> t;
+    while (t--) { 
+        Solve();
+    }
 
 #ifdef LOCAL
     auto _t1 = chrono::high_resolution_clock::now();

@@ -1,7 +1,7 @@
 /**
  *    a LGM is just a NEWBIE who kept trying
  *                author: K2
- *        created: 18.07.2026 18:24:51
+ *        created: 19.07.2026 19:20:14
  **/
 
 #include <bits/stdc++.h>
@@ -52,12 +52,28 @@ QUICK TRICKS:
 - (1LL << i) : Calculates 2^i safely for long long (Bitmasking).
 - (A + B - 1) / B : Math trick for Ceiling Division (ceil(A / B)) without floats!
 */
-
+// using INF = 2e18;
 void Solve() {
-    int h; int w; cin >> h >> w;
-    w=w*10000;
-    int bmi = w/(h*h);
-    cout << (bmi>=25?"Yes":"No") << "\n";
+    int64_t n; cin >> n;
+    vector <int64_t> v;
+    int64_t ans = 0;
+    int64_t mi = INF;
+    
+    while (n--){
+        int64_t x; cin >> x;
+        vector <int64_t> v1;
+        while (x--){
+            int64_t y; cin >> y;
+            v1.push_back(y);
+        }
+        sort(v1.begin(), v1.end());
+        mi = min(mi, v1[0]);
+        v.push_back(v1[1]);
+    }
+    sort(v.begin(), v.end());
+    ans += mi;
+    for (int64_t i = 1; i < v.size(); i++) ans += v[i];
+    cout << ans << "\n";
 }
 
 //int32_t main() {
@@ -74,11 +90,11 @@ int main() {
     auto _t0 = chrono::high_resolution_clock::now();
 #endif
 
-    // int t = 1;
-    // cin >> t;
-    // while (t--) { 
-    // }
-    Solve();
+    int t = 1;
+    cin >> t;
+    while (t--) { 
+        Solve();
+    }
 
 #ifdef LOCAL
     auto _t1 = chrono::high_resolution_clock::now();

@@ -1,7 +1,7 @@
 /**
  *    a LGM is just a NEWBIE who kept trying
  *                author: K2
- *        created: 18.07.2026 18:24:51
+ *        created: 26.07.2026 20:11:14
  **/
 
 #include <bits/stdc++.h>
@@ -54,10 +54,18 @@ QUICK TRICKS:
 */
 
 void Solve() {
-    int h; int w; cin >> h >> w;
-    w=w*10000;
-    int bmi = w/(h*h);
-    cout << (bmi>=25?"Yes":"No") << "\n";
+    int n, k; cin >> n >> k;
+    if(k == n - 1 && n > 1){
+        return void(cout << "-1\n");
+    }
+    int B = n-k;             
+    int c1 = (n+1)/2;        
+    int c0 = n/2;               
+    for (int i = 0; i<B; i++) {
+        int len = 1+(i == 0 ? c1-(B+1)/2 : (i==1 ? c0-B/2 : 0));
+        cout << string(len, (i&1) ? '0' : '1');
+    }
+    cout << "\n";
 }
 
 //int32_t main() {
@@ -74,11 +82,11 @@ int main() {
     auto _t0 = chrono::high_resolution_clock::now();
 #endif
 
-    // int t = 1;
-    // cin >> t;
-    // while (t--) { 
-    // }
-    Solve();
+    int t = 1;
+    cin >> t;
+    while (t--) { 
+        Solve();
+    }
 
 #ifdef LOCAL
     auto _t1 = chrono::high_resolution_clock::now();
